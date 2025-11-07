@@ -1,124 +1,49 @@
-# LinuxAppSuite
+# Linux App Suite
 
-A personal collection of Python, web apps, and utilities designed for easy setup on any Linux machine. All applications created and maintained by Dovendyr.
+The Linux App Suite is a collection of desktop utilities implemented with Tkinter. The
+suite provides a unified launcher, shared theming, and per-application settings storage
+so that each tool can adopt common conventions while remaining customizable.
 
 ## Features
 
-- Automatic OS detection and dependency installation
-- Cross-distribution support (Ubuntu, Debian, Fedora, CentOS, Arch, openSUSE)
-- Easy setup scripts for each application
+- **Unified launcher** – start applications from a central hub with consistent window
+  sizing defaults (1024×768) and quick theme switching.
+- **Theme support** – light and dark themes are available globally. The chosen theme is
+  persisted for the launcher and each individual app.
+- **Per-app settings** – window size, theme, and other configuration values are saved in
+  `~/.linux_app_suite/<app>.json` and loaded automatically.
+- **Initial application scaffolds**:
+  - Conversion Utility (length and temperature conversions)
+  - Word Processor (basic text editing and file operations)
+  - File Manager (directory browser)
+  - YouTube Downloader (interface prepared for future download logic)
+  - Budget Planner (track income and expenses)
+  - Pygame Playground (configure defaults for future Pygame projects)
 
-## Applications
+## Getting Started
 
-### 1. Ollama Chat - Local AI Chat Application
+1. Ensure Python 3.10+ is installed along with Tkinter.
+2. Run the launcher:
 
-A robust Tkinter-based chat interface for Ollama with advanced features:
+   ```bash
+   python main.py
+   ```
 
-**Features:**
-- Real-time streaming text responses
-- Model selection from locally available Ollama models
-- Tool calling support (cryptocurrency data via CoinGecko API)
-- Syntax-highlighted code blocks with colored backgrounds
-- Persistent chat history with save/load functionality
-- Clean, intuitive UI
-- Keyboard shortcuts (Enter to send, Shift+Enter for new line)
-
-**Quick Start:**
-```bash
-# Run the installation script
-cd LinuxAppSuite
-bash scripts/install/setup_ollama_chat.sh
-
-# Start the application
-cd python-apps/ollama-chat
-python3 ollama_chat.py
-```
-
-**Prerequisites:**
-- Python 3.6+
-- Tkinter
-- Ollama installed and running
-
-**Tools Available:**
-- `get_top_cryptocurrencies` - Fetch top 10 cryptocurrencies by market cap with live prices
-
-## Installation
-
-### General Setup
-
-Clone the repository:
-```bash
-git clone https://github.com/TheZedxD/LinuxAppSuite.git
-cd LinuxAppSuite
-```
-
-Each application has its own setup script in `scripts/install/`.
-
-### Manual Dependency Installation
-
-The suite automatically detects your Linux distribution and uses the appropriate package manager. Supported distributions:
-
-- **Debian/Ubuntu**: apt
-- **Fedora**: dnf
-- **CentOS/RHEL**: yum
-- **Arch Linux**: pacman
-- **openSUSE**: zypper
+3. Choose an application from the launcher window. Each app opens in its own window,
+   saves its window size, and remembers the selected theme the next time it is launched.
 
 ## Project Structure
 
 ```
-LinuxAppSuite/
-├── python-apps/          # Python applications
-│   └── ollama-chat/      # Ollama chat application
-│       ├── ollama_chat.py    # Main application
-│       ├── ollama_client.py  # Ollama API client
-│       └── tools.py          # Tool definitions
-├── scripts/              # Setup and utility scripts
-│   └── install/          # Installation scripts
-│       └── setup_ollama_chat.sh
-├── utils/                # Shared utilities
-│   └── os_detect.py      # OS detection utility
-└── README.md
+app_suite/            Shared infrastructure (themes, settings, base classes)
+apps/                 Individual application scaffolds
+main.py               Launcher entry point
+README.md             Project overview
 ```
 
-## Usage
+## Next Steps
 
-### Ollama Chat Application
-
-1. Make sure Ollama is installed and running:
-   ```bash
-   ollama serve
-   ```
-
-2. Pull a model (if you haven't already):
-   ```bash
-   ollama pull llama2
-   # or
-   ollama pull mistral
-   ```
-
-3. Run the chat application:
-   ```bash
-   cd python-apps/ollama-chat
-   python3 ollama_chat.py
-   ```
-
-4. Select a model from the dropdown and start chatting!
-
-5. Try asking: "What are the top 10 cryptocurrencies?" to test the tool calling feature.
-
-## Adding More Applications
-
-This suite is designed to grow. To add a new application:
-
-1. Create a directory in the appropriate category (python-apps, web-apps, etc.)
-2. Add an installation script in `scripts/install/`
-3. Update this README
-
-## License
-
-Personal collection - use at your own discretion.
-
-## Author
-
-Dovendyr
+- Flesh out application-specific functionality (e.g., integrate youtube-dl for downloads,
+  implement file operations, add document formatting, etc.).
+- Expand the theme system with additional palettes and component styles.
+- Add automated tests around settings persistence and conversion calculations.
